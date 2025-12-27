@@ -33,14 +33,17 @@ def load_model():
     try:
         return joblib.load("student_logreg_model.pkl")
     except Exception as e:
-        st.error("❌ Failed to load model file.")
+        st.error("❌ Failed to load model file")
         st.code(str(e))
         st.stop()
 
 model_data = load_model()
 
 # ---------------- Title ----------------
-st.markdown('<h1 class="main-header">🎓 Student Performance Predictor</h1>', unsafe_allow_html=True)
+st.markdown(
+    '<h1 class="main-header">🎓 Student Performance Predictor</h1>',
+    unsafe_allow_html=True
+)
 
 # ---------------- Sidebar Inputs ----------------
 st.sidebar.header("📊 Student Information")
@@ -58,6 +61,7 @@ g2 = st.sidebar.slider("G2 Grade (0–20)", 0, 20, 13)
 
 # ---------------- Prediction ----------------
 if st.sidebar.button("🔮 Predict Learning Level", type="primary"):
+
     student_data = {
         "age": age,
         "studytime": studytime,
@@ -82,8 +86,8 @@ if st.sidebar.button("🔮 Predict Learning Level", type="primary"):
 
     level = model_data["target_mapping"][pred]
 
-    st.success(f"🎯 **Predicted Learning Level:** {level}")
-    st.info(f"📊 **Model Accuracy:** {model_data['accuracy']:.2%}")
+    st.success(f"🎯 Predicted Learning Level: **{level}**")
+    st.info(f"📊 Model Accuracy: **{model_data['accuracy']:.2%}**")
 
     prob_df = pd.DataFrame({
         "Level": model_data["target_mapping"].values(),
