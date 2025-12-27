@@ -101,4 +101,5 @@ if st.sidebar.button("🔮 Predict Learning Level", type="primary"):
 
 # ---------------- Footer ----------------
 st.markdown("---")
-st.caption("Built with ❤️ for B.Tech Hackathon | Student ML Project")
+st.caption("Developed by INFERRIX")
+
